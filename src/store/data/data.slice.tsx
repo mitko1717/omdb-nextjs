@@ -1,15 +1,21 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 // import { IMonth, IDay, IEvent, IState } from "@/interfaces";
 
-const initialState = {
+interface IState {
+  page: number
+}
 
+const initialState: IState = {
+  page: 2
 };
 
 export const dataSlice = createSlice({
   name: "data",
   initialState,
   reducers: {
-
+    setPage(state, action) {
+      state.page = action.payload
+    },
   },
 });
 
