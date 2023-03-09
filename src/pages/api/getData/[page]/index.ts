@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { IMovieShortInfo } from '../../../modules/interfaces';
+import { IMovieShortInfo } from '../../../../modules/interfaces';
 
 const APIKEY = '8dd4c804'
 
-const getMovies = async (page: number | string) => {    
+const getMovies = async (page: number | string) => {      
   const url = `https://omdbapi.com/?apikey=${APIKEY}&s=batman&page=${page}`
 
   try {
@@ -24,6 +24,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {    
+  console.log('req.query PAGE,', req.query);
+  
     const { page } = req.query
     
     const movies = await getMovies(page && typeof page === 'string' ? page : 1);

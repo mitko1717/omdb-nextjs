@@ -13,23 +13,26 @@ type IData = {
 
 const Home: NextPage <{ data: IData }> = (props) => {
   const [page, SetPage] = useState(1)
+  const [movieQuery, setMovieQuery] = useState('batman')
   
   const movies = props?.data?.movies.Search;
   const router = useRouter();
 
   const changePage = () => {
-    router.replace(`/?page=${page}`);
+    router.push({
+      query: { ...router.query, page, movieQuery }
+    });  
   }
 
   useEffect(() => {
     changePage()
-  }, [page])
+  }, [page, movieQuery])
 
   return (
     <Provider store={store}>
       <div className="bg-[#3e3e3e] w-full flex flex-col">
         <Header />
-        <MoviesContainer  movies={movies}/>
+        <MoviesContainer movies={movies}/>
       </div>
     </Provider>
   )
@@ -37,11 +40,11 @@ const Home: NextPage <{ data: IData }> = (props) => {
 
 export default Home
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { page } = context.query
+export const getServerSideProps: GetServerSideProps = async (context) => {    
+  const { page, movieQuery } = context.query    
   
   try {    
-    const result = await fetch(`http://localhost:3000/api/getData/${page}`);
+    const result = await fetch(`http://localhost:3000/api/getData/${page}/${movieQuery}`);
     const data = await result.json();
 
     return {
