@@ -1,18 +1,18 @@
+import { useEffect, useState } from "react";
 import type { GetServerSideProps, NextPage } from "next";
 import { Provider } from "react-redux";
 import { store } from "../store";
-import MoviesContainer from "@/components/MoviesContainer";
 import { IResaultData } from "@/modules/interfaces";
 import { useRouter } from "next/router";
-import { useAppSelector } from "@/hooks/redux";
-import { useEffect, useState } from "react";
+import MoviesContainer from "@/components/MoviesContainer";
+import Header from "@/components/Header";
 
 type IData = {
   movies: IResaultData;
 };
 
 const Home: NextPage <{ data: IData }> = (props) => {
-  const [page, SetPage] = useState(3)
+  const [page, SetPage] = useState(1)
   
   const movies = props?.data?.movies.Search;
   const router = useRouter();
@@ -27,7 +27,8 @@ const Home: NextPage <{ data: IData }> = (props) => {
 
   return (
     <Provider store={store}>
-      <div className="bg-[#3e3e3e] h-[100vh] w-full flex flex-col">
+      <div className="bg-[#3e3e3e] w-full flex flex-col">
+        <Header />
         <MoviesContainer  movies={movies}/>
       </div>
     </Provider>
