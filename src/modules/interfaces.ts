@@ -59,7 +59,3 @@ export type IData = {
 export interface ContainerDataProps {
   movies: IMovieShortInfo[];
 }
-
-export type HeaderProps = {
-  setMovieQuery: Dispatch<SetStateAction<string>>;
-};

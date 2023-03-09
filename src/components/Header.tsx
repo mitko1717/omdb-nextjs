@@ -1,8 +1,10 @@
-import { HeaderProps } from "@/modules/interfaces";
 import { ChangeEvent, FormEvent, FC, useCallback } from "react";
 import debounce from "lodash.debounce";
+import { useActions } from "@/hooks/actions";
 
-const Header: FC<HeaderProps> = ({ setMovieQuery }) => {
+const Header: FC = () => {
+  const { setMovieQuery } = useActions();
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setMovieQuery(e.target.value);
@@ -29,7 +31,6 @@ const Header: FC<HeaderProps> = ({ setMovieQuery }) => {
             <Icon />
           </div>
           <input
-            // value={movieQuery}
             type="search"
             id="default-search"
             onChange={debouncedChangeHandler}

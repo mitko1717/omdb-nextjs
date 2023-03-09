@@ -2,13 +2,15 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 // import { IMonth, IDay, IEvent, IState } from "@/interfaces";
 
 interface IState {
-  page: number;
+  currentPage: number;
   totalResults: number;
+  movieQuery: string;
 }
 
 const initialState: IState = {
-  page: 2,
+  currentPage: 1,
   totalResults: 0,
+  movieQuery: "batman",
 };
 
 export const dataSlice = createSlice({
@@ -16,10 +18,13 @@ export const dataSlice = createSlice({
   initialState,
   reducers: {
     setPage(state, action) {
-      state.page = action.payload;
+      state.currentPage = action.payload;
     },
     setTotalResults(state, action) {
       state.totalResults = action.payload;
+    },
+    setMovieQuery(state, action) {
+      state.movieQuery = action.payload;
     },
   },
 });

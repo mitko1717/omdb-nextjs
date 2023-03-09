@@ -3,8 +3,8 @@ import { IMovieShortInfo } from "../../../../../modules/interfaces";
 
 const APIKEY = "8dd4c804";
 
-const getMovies = async (page: number | string, movieQuery: string) => {
-  const url = `https://omdbapi.com/?apikey=${APIKEY}&s=${movieQuery}&page=${page}`;
+const getMovies = async (currentPage: number | string, movieQuery: string) => {
+  const url = `https://omdbapi.com/?apikey=${APIKEY}&s=${movieQuery}&page=${currentPage}`;
 
   try {
     const res = await fetch(url);
@@ -24,10 +24,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const { page, movie } = req.query;
+  const { currentPage, movie } = req.query;
 
   const movies = await getMovies(
-    page && typeof page === "string" ? page : 1,
+    currentPage && typeof currentPage === "string" ? currentPage : 1,
     movie && typeof movie === "string" ? movie : "batman"
   );
 
