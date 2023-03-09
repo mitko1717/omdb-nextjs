@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface IMovie {
     Title: string;
     Year: string;
@@ -52,3 +54,7 @@ export interface IMoviesResult {
 export interface ContainerDataProps {
     movies: IMovieShortInfo[]
 }
+
+export type HeaderProps = {
+    setMovieQuery: Dispatch<SetStateAction<string>>;
+};

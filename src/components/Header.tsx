@@ -1,22 +1,25 @@
-import { ChangeEvent, FormEvent, FC } from "react";
+import { HeaderProps } from "@/modules/interfaces";
+import { ChangeEvent, FormEvent, FC, useCallback } from "react";
+import debounce from "lodash.debounce";
 
-const Header: FC = () => {
+const Header: FC<HeaderProps> = ({ setMovieQuery }) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    let val = e.target.value;
+    setMovieQuery(e.target.value)
   };
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
+  
+  const debouncedChangeHandler = useCallback(debounce(handleChange, 1000), []);
 
-  const image = `w-[380px] h-[130px] outline-0 ml-12 mr-10 mt-4`;
   const label = `mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300`;
   const divForSVG = `flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none`;
   const input = `block p-4 pl-10 w-full text-sm text-gray-900 rounded-lg border border-gray-300 bg-white border-[#DADDE1]`;
 
   return (
-    <header className={"flex w-full h-fit my-8 items-center"}>
+    <header className={"flex w-full h-fit mt-4 items-center"}>
       <form className={"h-fit w-[40%] mx-auto"} onSubmit={onSubmit}>
         <label htmlFor="default-search" className={label}>
           Search
@@ -26,9 +29,10 @@ const Header: FC = () => {
             <Icon />
           </div>
           <input
+            // value={movieQuery}
             type="search"
             id="default-search"
-            onChange={handleChange}
+            onChange={debouncedChangeHandler}
             className={input}
             placeholder="Search..."
             required

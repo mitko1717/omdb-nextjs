@@ -15,7 +15,7 @@ const Home: NextPage <{ data: IData }> = (props) => {
   const [page, SetPage] = useState(1)
   const [movieQuery, setMovieQuery] = useState('batman')
   
-  const movies = props?.data?.movies.Search;
+  const movies = props?.data?.movies.Search;  
   const router = useRouter();
 
   const changePage = () => {
@@ -31,7 +31,7 @@ const Home: NextPage <{ data: IData }> = (props) => {
   return (
     <Provider store={store}>
       <div className="bg-[#3e3e3e] w-full flex flex-col">
-        <Header />
+        <Header setMovieQuery={setMovieQuery}/>
         <MoviesContainer movies={movies}/>
       </div>
     </Provider>

@@ -23,11 +23,10 @@ type Data = {
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
-) {    
-  console.log('req.query MOVIE,', req.query);
-  
+) {  
     const { page, movie } = req.query
     
     const movies = await getMovies(page && typeof page === 'string' ? page : 1, movie && typeof movie === 'string' ? movie : 'batman');
+    
     res.status(200).json({ movies });
 }

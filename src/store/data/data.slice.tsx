@@ -3,10 +3,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IState {
   page: number
+  totalResults: number
 }
 
 const initialState: IState = {
-  page: 2
+  page: 2,
+  totalResults: 0
 };
 
 export const dataSlice = createSlice({
@@ -15,6 +17,9 @@ export const dataSlice = createSlice({
   reducers: {
     setPage(state, action) {
       state.page = action.payload
+    },
+    setTotalResults(state, action) {
+      state.totalResults = action.payload
     },
   },
 });
