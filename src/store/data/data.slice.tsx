@@ -2,13 +2,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 // import { IMonth, IDay, IEvent, IState } from "@/interfaces";
 
 interface IState {
-  page: number
-  totalResults: number
+  page: number;
+  totalResults: number;
 }
 
 const initialState: IState = {
   page: 2,
-  totalResults: 0
+  totalResults: 0,
 };
 
 export const dataSlice = createSlice({
@@ -16,10 +16,10 @@ export const dataSlice = createSlice({
   initialState,
   reducers: {
     setPage(state, action) {
-      state.page = action.payload
+      state.page = action.payload;
     },
     setTotalResults(state, action) {
-      state.totalResults = action.payload
+      state.totalResults = action.payload;
     },
   },
 });

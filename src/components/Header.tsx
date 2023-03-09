@@ -5,13 +5,13 @@ import debounce from "lodash.debounce";
 const Header: FC<HeaderProps> = ({ setMovieQuery }) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    setMovieQuery(e.target.value)
+    setMovieQuery(e.target.value);
   };
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
-  
+
   const debouncedChangeHandler = useCallback(debounce(handleChange, 1000), []);
 
   const label = `mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300`;
