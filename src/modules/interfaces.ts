@@ -1,3 +1,12 @@
+import { Dispatch, SetStateAction } from "react";
+
+export interface IState {
+  currentPage: number;
+  totalResults: number;
+  movieQuery: string;
+  favoritesMovies: IMovieShortInfo[];
+}
+
 export interface IMovieDetailInfo {
   Title: string;
   Year: string;
@@ -60,4 +69,16 @@ export interface ContainerDataProps {
 
 export interface IMovieProps {
   movie: IMovieShortInfo;
+}
+
+export type HeaderProps = {
+  setIsfavoritesOpen: Dispatch<SetStateAction<boolean>>;
+};
+
+export type FavoritesProps = {
+  setIsfavoritesOpen: Dispatch<SetStateAction<boolean>>;
+};
+
+export interface IMovieDetailsProps {
+  movie: IMovieDetailInfo;
 }

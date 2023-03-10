@@ -1,11 +1,7 @@
-import { IMovieDetailInfo } from "@/modules/interfaces";
+import { IMovieDetailsProps } from "@/modules/interfaces";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import Image from "next/image";
-
-interface IMovieDetailsProps {
-  movie: IMovieDetailInfo;
-}
 
 export default (props: IMovieDetailsProps) => {
   const { movie } = props;

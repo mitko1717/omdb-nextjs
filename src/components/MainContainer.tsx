@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { store } from "../store";
 import { IData } from "@/modules/interfaces";
@@ -8,10 +8,12 @@ import { useAppSelector } from "@/hooks/redux";
 import MoviesContainer from "@/components/MoviesContainer";
 import Header from "@/components/Header";
 import Pagination from "./Pagination";
+import Favorites from "./Favorites";
 
 const Main: FC<{ data: IData }> = (props) => {
   const { currentPage, movieQuery } = useAppSelector((state) => state.data);
   const { setTotalResults } = useActions();
+  const [isFavoritesOpen, setIsfavoritesOpen] = useState(false);
 
   const movies = props?.data?.movies.Search;
   const router = useRouter();
@@ -21,14 +23,18 @@ const Main: FC<{ data: IData }> = (props) => {
   };
 
   const changePage = () => {
-    router.push({
-      query: { ...router.query, currentPage, movieQuery },
-    });
+    if (!isFavoritesOpen) {
+      router.push({
+        query: { ...router.query, currentPage, movieQuery },
+      });
+    } else {
+      router.replace("/#favorites");
+    }
   };
 
   useEffect(() => {
     changePage();
-  }, [currentPage, movieQuery]);
+  }, [currentPage, movieQuery, isFavoritesOpen]);
 
   useEffect(() => {
     setTotakResultsHandler();
@@ -36,11 +42,14 @@ const Main: FC<{ data: IData }> = (props) => {
 
   return (
     <Provider store={store}>
-      <div className="bg-[#3e3e3e] w-full flex flex-col">
-        <Header />
-        <MoviesContainer movies={movies} />
-        <Pagination />
-      </div>
+      {!isFavoritesOpen && (
+        <div className="bg-[#3e3e3e] w-full flex flex-col">
+          <Header setIsfavoritesOpen={setIsfavoritesOpen} />
+          <MoviesContainer movies={movies} />
+          <Pagination />
+        </div>
+      )}
+      {isFavoritesOpen && <Favorites setIsfavoritesOpen={setIsfavoritesOpen} />}
     </Provider>
   );
 };
