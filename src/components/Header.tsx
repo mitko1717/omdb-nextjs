@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, FC, useCallback } from "react";
 import debounce from "lodash.debounce";
 import { useActions } from "@/hooks/actions";
+import Link from "next/link";
 
 const Header: FC = () => {
   const { setMovieQuery } = useActions();
@@ -19,7 +20,12 @@ const Header: FC = () => {
   const input = `block p-4 pl-10 w-full text-sm text-gray-900 rounded-lg border border-gray-300 bg-white border-[#DADDE1]`;
 
   return (
-    <header className={"flex w-full h-fit mt-4 items-center"}>
+    <header className={"flex w-full h-fit mt-4 items-center relative"}>
+      <Link href={"/favorites"}>
+        <button className="absolute top-0 right-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition ease-in-out duration-200">
+          FAVORITES
+        </button>
+      </Link>
       <form className={"h-fit w-[40%] mx-auto"} onSubmit={onSubmit}>
         <div className="relative">
           <div className={divForSVG}>

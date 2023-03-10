@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
-import NextBtn from "./Arrows/NextButton";
-import PrevBtn from "./Arrows/PrevButton";
+import NextBtn from "./Icons/NextButton";
+import PrevBtn from "./Icons/PrevButton";
 import { useAppSelector } from "@/hooks/redux";
 import { useActions } from "@/hooks/actions";
 

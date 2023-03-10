@@ -1,5 +1,4 @@
 import { ContainerDataProps } from "@/modules/interfaces";
-import Link from "next/link";
 import React from "react";
 import Movie from "./Movie";
 
