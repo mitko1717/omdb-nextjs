@@ -1,11 +1,12 @@
 import { ContainerDataProps } from "@/modules/interfaces";
+import Link from "next/link";
 import React from "react";
 import Movie from "./Movie";
 
 const MoviesContainer = ({ movies }: ContainerDataProps) => {
   if (movies && movies.length > 0) {
     return (
-      <div className="flex flex-wrap w-full justify-center h-[80vh]">
+      <div className="flex flex-wrap w-full justify-center h-auto">
         {movies.map((movie) => (
           <Movie key={movie.imdbID} movie={movie} />
         ))}

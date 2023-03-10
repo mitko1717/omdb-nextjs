@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 
-export interface IMovie {
+export interface IMovieDetailInfo {
   Title: string;
   Year: string;
   Rated: string;
@@ -58,4 +58,8 @@ export type IData = {
 
 export interface ContainerDataProps {
   movies: IMovieShortInfo[];
+}
+
+export interface IMovieProps {
+  movie: IMovieShortInfo;
 }
