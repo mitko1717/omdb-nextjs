@@ -66,7 +66,7 @@ const Pagination: FC = () => {
           {page}
         </span>
       );
-    } else return <span className="hidden"></span>;
+    } else return <span key={page} className="hidden"></span>;
   });
 
   let pageIncrementEllipses = null;

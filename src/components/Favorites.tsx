@@ -28,7 +28,7 @@ const Favorites: FC<FavoritesProps> = ({ setIsfavoritesOpen }) => {
           </h2>
         )}
         {favoritesMovies &&
-          favoritesMovies.map((movie) => <Movie movie={movie} />)}
+          favoritesMovies.map((movie) => <Movie key={movie.imdbID} movie={movie} />)}
       </div>
     </div>
   );
