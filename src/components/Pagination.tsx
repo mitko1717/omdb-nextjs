@@ -107,7 +107,10 @@ const Pagination: FC = () => {
 
   return (
     <div className="w-full flex">
-      <ul key={Math.random()} className="flex h-[24px] gap-3 mx-auto items-center justify-center mb-6 mt-3">
+      <ul
+        key={Math.random()}
+        className="flex h-[24px] gap-3 mx-auto items-center justify-center mb-6 mt-3"
+      >
         <button
           onClick={() => handlePrevClick()}
           disabled={currentPage === pages[0]}

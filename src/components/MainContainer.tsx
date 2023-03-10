@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { store } from "../store";
-import { IData } from "@/modules/interfaces";
+import { IResultData } from "@/modules/interfaces";
 import { useRouter } from "next/router";
 import { useActions } from "@/hooks/actions";
 import { useAppSelector } from "@/hooks/redux";
@@ -10,16 +10,16 @@ import Header from "@/components/Header";
 import Pagination from "./Pagination";
 import Favorites from "./Favorites";
 
-const Main: FC<{ data: IData }> = (props) => {
+const Main: FC<{ data: IResultData }> = (props) => {
   const { currentPage, movieQuery } = useAppSelector((state) => state.data);
   const { setTotalResults } = useActions();
   const [isFavoritesOpen, setIsfavoritesOpen] = useState(false);
 
-  const movies = props?.data?.movies.Search;
+  const movies = props?.data.Search;
   const router = useRouter();
 
   const setTotakResultsHandler = () => {
-    setTotalResults(props?.data?.movies?.totalResults);
+    setTotalResults(props?.data?.totalResults);
   };
 
   const changePage = () => {

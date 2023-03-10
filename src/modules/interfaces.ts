@@ -12,7 +12,7 @@ export interface IRating {
   Value: string;
 }
 
-export interface IResaultData {
+export interface IResultData {
   Search: IMovieShortInfo[];
   totalResults: number;
 }
@@ -24,16 +24,6 @@ export interface IMovieShortInfo {
   Type: string;
   Poster: string;
 }
-
-export interface IMoviesResult {
-  Search: IMovieShortInfo[];
-  totalResults: string;
-  Response: string;
-}
-
-export type IData = {
-  movies: IResaultData;
-};
 
 export interface ContainerDataProps {
   movies: IMovieShortInfo[];

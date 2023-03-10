@@ -1,11 +1,11 @@
 import type { GetServerSideProps, NextPage } from "next";
 import { Provider } from "react-redux";
 import { store } from "../store";
-import { IData } from "@/modules/interfaces";
+import { IResultData } from "@/modules/interfaces";
 import Main from "@/components/MainContainer";
 
-const Home: NextPage<{ data: IData }> = (props) => {
-  const data = props?.data;
+const Home: NextPage<{ data: IResultData }> = (props) => {
+  const data = props?.data;  
 
   return (
     <Provider store={store}>
@@ -19,9 +19,11 @@ export default Home;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { currentPage, movieQuery } = context.query;
 
+  const url = `https://omdbapi.com/?apikey=${process.env.API_KEY}&s=${movieQuery}&page=${currentPage}`;
+
   try {
     const result = await fetch(
-      `http://localhost:3000/api/getData/${currentPage}/${movieQuery}`
+      url
     );
     const data = await result.json();
 

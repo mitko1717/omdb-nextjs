@@ -1,7 +1,6 @@
 import { ChangeEvent, FormEvent, FC, useCallback } from "react";
 import debounce from "lodash.debounce";
 import { useActions } from "@/hooks/actions";
-import Link from "next/link";
 import { HeaderProps } from "@/modules/interfaces";
 
 const Header: FC<HeaderProps> = ({ setIsfavoritesOpen }) => {
@@ -17,8 +16,8 @@ const Header: FC<HeaderProps> = ({ setIsfavoritesOpen }) => {
   };
 
   const openFavHandler = () => {
-    setIsfavoritesOpen(true);
-  };
+    setIsfavoritesOpen(true)
+  }
 
   const debouncedChangeHandler = useCallback(debounce(handleChange, 1000), []);
   const divForSVG = `flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none`;
@@ -26,12 +25,10 @@ const Header: FC<HeaderProps> = ({ setIsfavoritesOpen }) => {
 
   return (
     <header className={"flex w-full h-fit mt-4 items-center relative"}>
-      <button
-        className="absolute top-0 right-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition ease-in-out duration-200"
-        onClick={openFavHandler}
-      >
-        FAVORITES
-      </button>
+    
+        <button className="absolute top-0 right-6 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition ease-in-out duration-200" onClick={openFavHandler}>
+          FAVORITES
+        </button>
 
       <form className={"h-fit w-[40%] mx-auto"} onSubmit={onSubmit}>
         <div className="relative">
