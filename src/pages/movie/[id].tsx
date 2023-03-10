@@ -12,7 +12,7 @@ export default (props: IMovieDetailsProps) => {
     <div className="p-4">
       <Link href={"/"}>
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition ease-in-out duration-200">
-          Back to main page
+          BACK TO MAIN PAGE
         </button>
       </Link>
 
@@ -59,7 +59,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   try {
     const result = await fetch(
-      `https://www.omdbapi.com/?apikey=8dd4c804&i=${id}`
+      `https://www.omdbapi.com/?apikey=${process.env.API_KEY}&i=${id}`
     );
     const movie = await result.json();
 

@@ -8,7 +8,7 @@ const Pagination: FC = () => {
   const { totalResults, currentPage } = useAppSelector((state) => state.data);
   const { setPage } = useActions();
   const recordsPerPage = 10;
-  const nPages = Math.ceil(totalResults / recordsPerPage);
+  const nPages = Math.ceil(totalResults / recordsPerPage) || 10;
   const pageNumberss = [...Array.from(Array(nPages + 1).keys())].slice(1);
   const [maxPageLimit, setMaxPageLimit] = useState(5);
   const [minPageLimit, setMinPageLimit] = useState(0);
@@ -107,7 +107,7 @@ const Pagination: FC = () => {
 
   return (
     <div className="w-full flex">
-      <ul className="flex h-[24px] gap-3 mx-auto items-center justify-center mb-6 mt-3">
+      <ul key={Math.random()} className="flex h-[24px] gap-3 mx-auto items-center justify-center mb-6 mt-3">
         <button
           onClick={() => handlePrevClick()}
           disabled={currentPage === pages[0]}

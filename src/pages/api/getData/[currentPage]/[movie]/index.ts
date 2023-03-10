@@ -1,10 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { IMovieShortInfo } from "../../../../../modules/interfaces";
 
-const APIKEY = "8dd4c804";
+// const API_KEY = "8dd4c804";
 
 const getMovies = async (currentPage: number | string, movieQuery: string) => {
-  const url = `https://omdbapi.com/?apikey=${APIKEY}&s=${movieQuery}&page=${currentPage}`;
+  const url = `https://omdbapi.com/?apikey=${process.env.API_KEY}&s=${movieQuery}&page=${currentPage}`;
 
   try {
     const res = await fetch(url);
